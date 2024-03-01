@@ -1,6 +1,6 @@
 # Neovim Remaps
 
-**<leader>** = `space`
+**`<leader>`** = `space`
 
 ## Basics
 - **Exit out of file:** `<leader>e`
