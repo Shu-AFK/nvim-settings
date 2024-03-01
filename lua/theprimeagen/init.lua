@@ -24,6 +24,7 @@ vim.filetype.add({
     extension = {
         templ = 'templ',
         h = "c",
+        hpp = "cpp",
     }
 })
 
