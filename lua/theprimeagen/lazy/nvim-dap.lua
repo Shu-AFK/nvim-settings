@@ -4,27 +4,33 @@ return {
     local dap = require('dap')
 
     -- Configure GDB for C/C++ debugging
-    dap.adapters.cppdbg = {
-      id = 'cppdbg',
+    dap.adapters.gdb = {
       type = 'executable',
       command = '/usr/bin/gdb', -- Ensure this path is correct for your system
-      args = {}
+      args = {'--quite', '--interpreter=mi2'}
     }
 
-    dap.configurations.cpp = {
+    dap.configurations.c = {
       {
         name = 'Launch file',
-        type = 'cppdbg',
+        type = 'gdb',
         request = 'launch',
         program = function()
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         cwd = '${workspaceFolder}',
-        stopOnEntry = true,
+        stopOnEntry = false,
+        setupCommands = {
+            {
+                 text = '-enable-pretty-printing',
+                 description = 'enable pretty printing',
+                 ignoreFailures = false
+            },
+         },
       },
     }
 
-    dap.configurations.c = dap.configurations.cpp -- Use the same configuration for C
+    dap.configurations.cpp = dap.configurations.c -- Use the same configuration for Cpp
     -- Add any additional nvim-dap setup here
   end,
   -- Specify any event or condition to trigger the lazy loading of nvim-dap
