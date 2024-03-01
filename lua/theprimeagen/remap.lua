@@ -1,4 +1,3 @@
-
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
@@ -10,7 +9,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -45,9 +43,6 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-
 -- Debugger
 vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true });
 vim.keymap.set("n", "<F1>", "<cmd>lua require'dap'.step_into()<CR>",  { noremap = true, silent = true });
@@ -56,19 +51,16 @@ vim.keymap.set("n", "<F3>", "<cmd>lua require'dap'.step_over()<CR>",  { noremap 
 vim.keymap.set("n", "<leader>con", "<cmd>lua require'dap'.continue()<CR>",  { noremap = true, silent = true });
 vim.keymap.set("n", "<leader>dis", "<cmd>lua require'dap'.disconnect()<CR><cmd>lua require'dap'.close()<CR>",  { noremap = true, silent = true });
 
--- Start the debugger
+-- Start the debugger function
 local function dap_run_config()
-  -- Prompt the user for language type, executable path, and name
   local lang_type = vim.fn.input('Language type (e.g., cpp): ')
   local program_path = vim.fn.input('Path to executable: ')
   local config_name = vim.fn.input('Configuration name (optional, press Enter to skip): ')
 
-  -- Use default name if not provided
   if config_name == "" then
     config_name = "Launch file"
   end
 
-  -- Run dap with the provided configuration
   require'dap'.run({
     type = lang_type,
     request = 'launch',
@@ -78,6 +70,3 @@ local function dap_run_config()
 end
 
 vim.keymap.set('n', '<leader>sdb', dap_run_config, {noremap = true, silent = true})
-
-end)
-
