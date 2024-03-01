@@ -7,7 +7,7 @@ return {
     dap.adapters.gdb = {
       type = 'executable',
       command = '/usr/bin/gdb', -- Ensure this path is correct for your system
-      args = {'--quite', '--interpreter=mi2'}
+      args = {'--quiet', '--interpreter=mi2'}
     }
 
     dap.configurations.c = {
